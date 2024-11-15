@@ -20,27 +20,29 @@
 
   <!-- Additional CSS for Spacing Adjustments -->
   <style>
-    /*Adjust spacing*/
+    /* Adjust spacing between publication cards */
     .tab-pane .card {
       margin-bottom: 0 !important;
       padding: 0 !important;
     }
 
-    /*Remove padding from tab pane */
+    /* Remove padding from tab pane */
     .tab-pane {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
     }
 
-    /*Remove extra padding from publications content */
-    #publications-content iframe {
-      margin-bottom: 0 !important;
-      padding: 0 !important;
-    }
-
-    /*tighter spacing iframes*/
-    iframe {
+    /* Remove any extra margin/padding from publications content */
+    #publications-content iframe, #all-news-content iframe {
       margin-bottom: 5px !important; 
+      padding: 0 !important;
+      display: block;
+    }
+    
+    /* Remove any padding and margin in the parent container */
+    #publications-content, #all-news-content {
+      margin: 0 !important;
+      padding: 0 !important;
     }
   </style>
 </head>
@@ -134,14 +136,14 @@
     const allNewsContent = document.getElementById("all-news-content");
     const publicationsContent = document.getElementById("publications-content");
 
-    //Define all (except gallery)
+    // Define all posts in each section except Gallery
     const posts = {
       publication: ["publication/ijcas-20240806.html", "publication/ieee-access-20241021.html"],
       tutorial: ["tutorial/making-3dmap-colmap.html"],
       paperReview: ["paper-review/clip-clique-review.html"]
     };
 
-    //Populate All News tab
+    // Loop through each category and add iframes to All News tab
     for (const category in posts) {
       posts[category].forEach(post => {
         const iframe = document.createElement("iframe");
@@ -149,19 +151,19 @@
         iframe.style.width = "100%";
         iframe.style.height = "600px";
         iframe.style.border = "none";
-        iframe.style.marginBottom = "5px"; // Adjusted spacing
+        iframe.style.marginBottom = "5px";
         allNewsContent.appendChild(iframe);
       });
     }
 
-    //Populate Publications tab
+    // Populate Publications tab
     posts.publication.forEach(file => {
       const iframe = document.createElement("iframe");
       iframe.src = file;
       iframe.style.width = "100%";
       iframe.style.height = "600px";
       iframe.style.border = "none";
-      iframe.style.marginBottom = "5px"; // Adjusted spacing
+      iframe.style.marginBottom = "5px";
       publicationsContent.appendChild(iframe);
     });
   });
