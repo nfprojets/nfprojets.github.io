@@ -20,27 +20,18 @@
 
   <!-- Additional CSS for Spacing Adjustments -->
   <style>
-    /* Adjust spacing between publication cards */
-    .tab-pane .card {
-      margin-bottom: 0 !important;
-      padding: 0 !important;
-    }
-
-    /* Remove padding from tab pane */
-    .tab-pane {
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-    }
-
-    /* Remove any extra margin/padding from publications content */
-    #publications-content iframe, #all-news-content iframe {
-      margin-bottom: 5px !important; 
+    /* Add border for debugging */
+    iframe {
+      border: 2px solid red !important; /* Visible border for debugging */
+      margin: 0 !important;
       padding: 0 !important;
       display: block;
+      margin-bottom: 0 !important;
     }
-    
-    /* Remove any padding and margin in the parent container */
-    #publications-content, #all-news-content {
+
+    /* Debugging parent containers */
+    #all-news-content, #publications-content {
+      border: 2px dashed blue !important; /* Debugging parent border */
       margin: 0 !important;
       padding: 0 !important;
     }
@@ -151,7 +142,8 @@
         iframe.style.width = "100%";
         iframe.style.height = "600px";
         iframe.style.border = "none";
-        iframe.style.marginBottom = "5px";
+        iframe.style.margin = "0"; // No margin for debugging
+        iframe.style.padding = "0"; // No padding for debugging
         allNewsContent.appendChild(iframe);
       });
     }
@@ -163,7 +155,8 @@
       iframe.style.width = "100%";
       iframe.style.height = "600px";
       iframe.style.border = "none";
-      iframe.style.marginBottom = "5px";
+      iframe.style.margin = "0"; // No margin for debugging
+      iframe.style.padding = "0"; // No padding for debugging
       publicationsContent.appendChild(iframe);
     });
   });
