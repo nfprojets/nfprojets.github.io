@@ -1,52 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous">
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous">
-  <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css"
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css"
         integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
-  <!-- Custom CSS -->
   <link href="style.css" rel="stylesheet">
   <link rel="icon" href="assets/fav_icon.png">
   <title>Nanda's Project</title>
 
-  <!-- Additional CSS for Spacing Adjustments -->
   <style>
-    /* Container adjustments for iFrames */
-    #all-news-content, #publications-content {
-      margin: 0;
-      padding: 0;
-      border: none;
-    }
-
-    /* Adjust iframe styles */
     iframe {
-      display: block;
-      width: 100%;
-      height: auto;
       border: none;
-      margin: 0;
-      padding: 0;
+      width: 100%;
+      height: auto; /* Allow iframe to grow with content */
+      margin-bottom: 20px;
     }
 
-    /* CSS Reset for body and html */
-    body, html {
-      margin: 0;
+    #all-news-content, #publications-content {
       padding: 0;
-    }
-
-    /* Reset margin and padding for all elements */
-    * {
-      margin: 0 !important;
-      padding: 0 !important;
+      margin: 0;
     }
   </style>
 </head>
@@ -98,22 +75,22 @@
       <div class="tab-content" id="myTabContent">
         <!-- All News Tab Content -->
         <div class="tab-pane fade show active" id="all-news-tab-pane" role="tabpanel" aria-labelledby="all-news-tab">
-          <div id="all-news-content"></div> 
+          <div id="all-news-content"></div>
         </div>
 
         <!-- Publications Tab Content -->
         <div class="tab-pane fade" id="publications-tab-pane" role="tabpanel" aria-labelledby="publications-tab">
-          <div id="publications-content"></div> 
+          <div id="publications-content"></div>
         </div>
 
         <!-- Tutorials Tab Content -->
         <div class="tab-pane fade" id="tutorial-tab-pane" role="tabpanel" aria-labelledby="tutorial-tab">
-          <iframe src="tutorial/making-3dmap-colmap.html" style="width: 100%; height: 600px; border: none;"></iframe>
+          <iframe src="tutorial/making-3dmap-colmap.html" style="width: 100%;"></iframe>
         </div>
 
         <!-- Paper Review Tab Content -->
         <div class="tab-pane fade" id="paper-review-tab-pane" role="tabpanel" aria-labelledby="paper-review-tab">
-          <iframe src="paper-review/clip-clique-review.html" style="width: 100%; height: 600px; border: none;"></iframe>
+          <iframe src="paper-review/clip-clique-review.html" style="width: 100%;"></iframe>
         </div>
 
         <!-- Gallery Tab Content -->
@@ -132,45 +109,37 @@
 </div>
 
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<!-- Script All News -->
+<!-- JavaScript to Populate Tabs -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const allNewsContent = document.getElementById("all-news-content");
     const publicationsContent = document.getElementById("publications-content");
 
-    // Define all posts in each section except Gallery
+    // Define all posts in each section
     const posts = {
       publication: ["publication/ijcas-20240806.html", "publication/ieee-access-20241021.html"],
       tutorial: ["tutorial/making-3dmap-colmap.html"],
       paperReview: ["paper-review/clip-clique-review.html"]
     };
 
-    // Helper function to create iframes with minimized spacing
-    function createIframe(src) {
-      const iframe = document.createElement("iframe");
-      iframe.src = src;
-      iframe.style.width = "100%";
-      iframe.style.height = "auto";
-      iframe.style.border = "none";
-      iframe.style.margin = "0";
-      iframe.style.padding = "0";
-      iframe.allow = "fullscreen"; 
-      return iframe;
-    }
-
-    // Loop through each category and add iframes to All News tab
+    // Populate All News tab
     for (const category in posts) {
       posts[category].forEach(post => {
-        const iframe = createIframe(post);
+        const iframe = document.createElement("iframe");
+        iframe.src = post;
+        iframe.style.height = "auto";
         allNewsContent.appendChild(iframe);
       });
     }
 
     // Populate Publications tab
     posts.publication.forEach(file => {
-      const iframe = createIframe(file);
+      const iframe = document.createElement("iframe");
+      iframe.src = file;
+      iframe.style.height = "auto";
       publicationsContent.appendChild(iframe);
     });
   });
