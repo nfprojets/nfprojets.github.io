@@ -67,12 +67,7 @@
         <div class="tab-content" id="myTabContent">
           <!-- All News Tab Content -->
           <div class="tab-pane fade show active" id="all-news-tab-pane" role="tabpanel" aria-labelledby="all-news-tab">
-            <div id="all-news-content">
-              <!-- Fallback content -->
-              <a href="publication/index.html" target="_blank" class="d-block mb-2">View post: publication/index.html</a>
-              <a href="tutorial/making-3dmap-colmap.html" target="_blank" class="d-block mb-2">View post: tutorial/making-3dmap-colmap.html</a>
-              <a href="paper-review/clip-clique-review.html" target="_blank" class="d-block mb-2">View post: paper-review/clip-clique-review.html</a>
-            </div> 
+            <div id="all-news-content"></div> 
           </div>
           
           <!-- Publications Tab Content -->
@@ -121,7 +116,7 @@
         paperReview: ["paper-review/clip-clique-review.html"]
       };
 
-      // Clear fallback content
+      // Clear any existing content
       allNewsContent.innerHTML = '';
 
       // Loop through each category and add links to All News tab
