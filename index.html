@@ -18,6 +18,19 @@
   <link rel="icon" href="assets/fav_icon.png">
 
   <title>Nanda's Project</title>
+
+  <style>
+    /* Custom styles for iframes to manage spacing */
+    #all-news-content iframe {
+      margin-bottom: 10px; /* Adjust this value as needed for closer spacing */
+      padding: 0;
+    }
+
+    #publications-content iframe {
+      margin-bottom: 10px; /* Keep consistent spacing in Publications tab */
+      padding: 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -70,6 +83,7 @@
           <div id="all-news-content"></div> 
         </div>
 
+        <!-- Publications Tab Content -->
         <div class="tab-pane fade" id="publications-tab-pane" role="tabpanel" aria-labelledby="publications-tab">
           <div id="publications-content"></div> 
         </div>
@@ -102,19 +116,20 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<!-- Script to Populate All News Tab with iFrames -->
+<!-- Script to Populate Tabs with iFrames -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const allNewsContent = document.getElementById("all-news-content");
+    const publicationsContent = document.getElementById("publications-content");
 
-    // Define all posts in each section except Gallery
+    // Define all posts for All News
     const posts = {
       publication: ["publication/ijcas-20240806.html","publication/ieee-access-20241021.html"],
       tutorial: ["tutorial/making-3dmap-colmap.html"],
       paperReview: ["paper-review/clip-clique-review.html"]
     };
 
-    // Loop through each category and add iframes to All News tab
+    // Populate All News Tab
     for (const category in posts) {
       posts[category].forEach(post => {
         const iframe = document.createElement("iframe");
@@ -122,11 +137,22 @@
         iframe.style.width = "100%";
         iframe.style.height = "600px";
         iframe.style.border = "none";
-        iframe.style.marginBottom = "0";
-        // iframe.className = "mb-4";  // add space
+        iframe.style.marginBottom = "10px";
         allNewsContent.appendChild(iframe);
       });
     }
+
+    // Populate Publications Tab
+    const publicationFiles = ["ijcas-20240806.html", "ieee-access-20241021.html"];
+    publicationFiles.forEach(file => {
+      const iframe = document.createElement("iframe");
+      iframe.src = `publication/${file}`;
+      iframe.style.width = "100%";
+      iframe.style.height = "600px";
+      iframe.style.border = "none";
+      iframe.style.marginBottom = "10px";
+      publicationsContent.appendChild(iframe);
+    });
   });
 </script>
 </body>
