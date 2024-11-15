@@ -16,25 +16,31 @@
   <!-- Custom CSS -->
   <link href="style.css" rel="stylesheet">
   <link rel="icon" href="assets/fav_icon.png">
-
   <title>Nanda's Project</title>
 
+  <!-- Additional CSS for Spacing Adjustments -->
   <style>
-    #.tab-pane .card {
-      margin-bottom: 5px !important; 
+    /*Adjust spacing*/
+    .tab-pane .card {
+      margin-bottom: 0 !important;
       padding: 0 !important;
     }
 
-    /* Remove padding from tab pane */
+    /*Remove padding from tab pane */
     .tab-pane {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
     }
 
-    /*Remove xtra margin from publications content*/
-    #publications-content {
-      margin: 0 !important;
+    /*Remove extra padding from publications content */
+    #publications-content iframe {
+      margin-bottom: 0 !important;
       padding: 0 !important;
+    }
+
+    /*tighter spacing iframes*/
+    iframe {
+      margin-bottom: 5px !important; 
     }
   </style>
 </head>
@@ -122,20 +128,20 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<!-- Script to Populate Tabs with iFrames -->
+<!-- Script to Populate All News Tab with iFrames -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const allNewsContent = document.getElementById("all-news-content");
     const publicationsContent = document.getElementById("publications-content");
 
-    // Define all posts for All News
+    //Define all (except gallery)
     const posts = {
-      publication: ["publication/ijcas-20240806.html","publication/ieee-access-20241021.html"],
+      publication: ["publication/ijcas-20240806.html", "publication/ieee-access-20241021.html"],
       tutorial: ["tutorial/making-3dmap-colmap.html"],
       paperReview: ["paper-review/clip-clique-review.html"]
     };
 
-    // Populate All News Tab
+    //Populate All News tab
     for (const category in posts) {
       posts[category].forEach(post => {
         const iframe = document.createElement("iframe");
@@ -143,20 +149,19 @@
         iframe.style.width = "100%";
         iframe.style.height = "600px";
         iframe.style.border = "none";
-        iframe.style.marginBottom = "10px";
+        iframe.style.marginBottom = "5px"; // Adjusted spacing
         allNewsContent.appendChild(iframe);
       });
     }
 
-    // Populate Publications Tab
-    const publicationFiles = ["ijcas-20240806.html", "ieee-access-20241021.html"];
-    publicationFiles.forEach(file => {
+    //Populate Publications tab
+    posts.publication.forEach(file => {
       const iframe = document.createElement("iframe");
-      iframe.src = `publication/${file}`;
+      iframe.src = file;
       iframe.style.width = "100%";
       iframe.style.height = "600px";
       iframe.style.border = "none";
-      iframe.style.marginBottom = "1px";
+      iframe.style.marginBottom = "5px"; // Adjusted spacing
       publicationsContent.appendChild(iframe);
     });
   });
