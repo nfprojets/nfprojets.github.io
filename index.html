@@ -20,15 +20,33 @@
 
   <!-- Additional CSS for Spacing Adjustments -->
   <style>
-    /* Wrapper to control spacing between iframes */
-    .iframe-wrapper {
-      margin-bottom: 10px; /* Adjust for desired spacing */
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
+    /* Container adjustments for iFrames */
+    #all-news-content, #publications-content {
+      margin: 0;
+      padding: 0;
       border: none;
+    }
+
+    /* Adjust iframe styles */
+    iframe {
       display: block;
+      width: 100%;
+      height: auto;
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* CSS Reset for body and html */
+    body, html {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Reset margin and padding for all elements */
+    * {
+      margin: 0 !important;
+      padding: 0 !important;
     }
   </style>
 </head>
@@ -116,7 +134,7 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<!-- Script to Populate All News Tab with iFrames -->
+<!-- Script All News -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const allNewsContent = document.getElementById("all-news-content");
@@ -129,30 +147,31 @@
       paperReview: ["paper-review/clip-clique-review.html"]
     };
 
-    // Populate All News Tab with iframes wrapped in a div for spacing control
+    // Helper function to create iframes with minimized spacing
+    function createIframe(src) {
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.style.width = "100%";
+      iframe.style.height = "auto";
+      iframe.style.border = "none";
+      iframe.style.margin = "0";
+      iframe.style.padding = "0";
+      iframe.allow = "fullscreen"; 
+      return iframe;
+    }
+
+    // Loop through each category and add iframes to All News tab
     for (const category in posts) {
       posts[category].forEach(post => {
-        const wrapper = document.createElement("div");
-        wrapper.className = "iframe-wrapper";
-
-        const iframe = document.createElement("iframe");
-        iframe.src = post;
-        wrapper.appendChild(iframe);
-
-        allNewsContent.appendChild(wrapper);
+        const iframe = createIframe(post);
+        allNewsContent.appendChild(iframe);
       });
     }
 
-    // Populate Publications Tab with iframes wrapped in a div for spacing control
+    // Populate Publications tab
     posts.publication.forEach(file => {
-      const wrapper = document.createElement("div");
-      wrapper.className = "iframe-wrapper";
-
-      const iframe = document.createElement("iframe");
-      iframe.src = file;
-      wrapper.appendChild(iframe);
-
-      publicationsContent.appendChild(wrapper);
+      const iframe = createIframe(file);
+      publicationsContent.appendChild(iframe);
     });
   });
 </script>
