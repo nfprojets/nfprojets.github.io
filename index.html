@@ -11,8 +11,8 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
           crossorigin="anonymous">
-    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css
-          integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin=anonymous>
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css"
+          integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link href="style.css" rel="stylesheet">
     <link rel="icon" href="assets/fav_icon.png">
@@ -40,7 +40,7 @@
           <a href="mailto:nnd.fbr@jbnu.ac.kr" class="btn btn-black w-100 text-start ps-0"><i class="fa-solid fa-envelope"></i> E-Mail</a>
           <a href="https://scholar.google.com/citations?user=4XNwbk0AAAAJ&hl=ko" target="_blank" class="btn btn-black w-100 text-start ps-0"><i class="ai ai-google-scholar"></i> Google Scholar</a>
           <a href="https://www.linkedin.com/in/nanda-febri12" target="_blank" class="btn btn-black w-100 text-start ps-0"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="https://github.com/nfprojets" target="_blank" class="btn btn-black w-100 text-start ps-0"><i class="fa-brands fa-github"></i></i> GitHub</a>
+          <a href="https://github.com/nfprojets" target="_blank" class="btn btn-black w-100 text-start ps-0"><i class="fa-brands fa-github"></i> GitHub</a>
         </div>
         <div class="col-sm-12 col-md-6">
           
@@ -67,7 +67,12 @@
         <div class="tab-content" id="myTabContent">
           <!-- All News Tab Content -->
           <div class="tab-pane fade show active" id="all-news-tab-pane" role="tabpanel" aria-labelledby="all-news-tab">
-            <div id="all-news-content"></div> 
+            <div id="all-news-content">
+              <!-- Fallback content -->
+              <a href="publication/index.html" target="_blank" class="d-block mb-2">View post: publication/index.html</a>
+              <a href="tutorial/making-3dmap-colmap.html" target="_blank" class="d-block mb-2">View post: tutorial/making-3dmap-colmap.html</a>
+              <a href="paper-review/clip-clique-review.html" target="_blank" class="d-block mb-2">View post: paper-review/clip-clique-review.html</a>
+            </div> 
           </div>
           
           <!-- Publications Tab Content -->
@@ -103,9 +108,10 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   
-    <!-- Script to Populate All News Tab -->
+  <!-- Script to Populate All News Tab -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      console.log("Document loaded, running script...");
       const allNewsContent = document.getElementById("all-news-content");
 
       // Define all posts in each section except Gallery
@@ -113,8 +119,10 @@
         publication: ["publication/index.html"],
         tutorial: ["tutorial/making-3dmap-colmap.html"],
         paperReview: ["paper-review/clip-clique-review.html"]
-        // Gallery is excluded
       };
+
+      // Clear fallback content
+      allNewsContent.innerHTML = '';
 
       // Loop through each category and add links to All News tab
       for (const category in posts) {
@@ -125,8 +133,10 @@
           postLink.className = "d-block mb-2";
           postLink.textContent = `View post: ${post}`;
           allNewsContent.appendChild(postLink);
+          console.log(`Added link for ${post}`);
         });
       }
+      console.log("All News content populated.");
     });
   </script>
 </body>
