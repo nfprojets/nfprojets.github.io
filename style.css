@@ -135,3 +135,13 @@ iframe {
   margin: 0 auto;
 }
 
+.publication-card-wrapper,
+.paper-preview-wrapper {
+  margin: 0 !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.card {
+  margin-bottom: 1rem !important;
+}
