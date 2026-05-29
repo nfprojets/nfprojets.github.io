@@ -3,29 +3,55 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+          rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+          crossorigin="anonymous">
+
     <link rel="stylesheet" href="../style.css">
+
     <title>SC-VLMaps: Depth-Free Visual-Language Mapping via Scene Coordinate Regression</title>
   </head>
+
   <body>
-    <div class="container mt-5">
-      <div class="card text-white bg-dark mb-4 border-3">
+    <div class="container mt-0 p-0">
+      <div class="card mb-3 border-3">
+
         <div class="card-header">
           SC-VLMaps: Depth-Free Visual-Language Mapping via Scene Coordinate Regression
           <span class="badge bg-secondary mx-1">ICRA 2026</span>
         </div>
+
         <div class="card-body">
-          <p class="card-subtitle text-muted">Nanda Febri Istighfarin, Baehoon Choi, HyungGi Jo</p>
-          <p class="card-text mt-2">Building visual-language map with only RGB image using scene coordinate regression</p>
-          <a href="https://2026.ieee-icra.org/" target="_blank" class="btn btn-dark btn-sm">
+          <p class="card-subtitle text-muted">
+            Nanda Febri Istighfarin, Baehoon Choi, HyungGi Jo
+          </p>
+
+          <p class="card-text mt-2">
+            Building visual-language maps from RGB images only using scene coordinate regression.
+          </p>
+
+          <a href="https://2026.ieee-icra.org/" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn btn-sm">
             <i class="fa-solid fa-file-pdf"></i> Paper PDF
           </a>
         </div>
-        <video muted autoplay loop class="card-img-bottom w-100">
-          <source src="../assets/videos/fire_icra.mp4" type="video/mp4">
-        </video> 
+
+        <div class="paper-preview-wrapper">
+          <img src="../assets/videos/fire_icra.gif"
+               class="paper-preview"
+               alt="SC-VLMaps preview">
+        </div>
+
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+            crossorigin="anonymous">
+    </script>
   </body>
 </html>
