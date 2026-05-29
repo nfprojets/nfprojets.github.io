@@ -119,3 +119,21 @@ iframe {
   padding: 0 !important;
 }
 
+```css
+.paper-preview-wrapper {
+  background-color: white;
+  text-align: center;
+  padding: 12px 0 18px 0;
+}
+
+.paper-preview {
+  display: block;
+  max-width: 480px;
+  max-height: 260px;
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+```
+
