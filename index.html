@@ -21,13 +21,11 @@
 	<title>Nanda's Project</title>
 
 	<style>
-		/* Space between each embedded post */
 		.iframe-wrapper {
 			margin: 0 0 18px 0;
 			padding: 0;
 		}
 	
-		/* No iframe scrollbar */
 		iframe {
 			width: 100%;
 			border: none;
@@ -170,16 +168,17 @@
 				]
 			};
 	
-			/* Manual iframe heights. Increase/decrease these if needed. */
-			const iframeHeights = {
-				"publication/icra-20260601.html": 500,
-				"publication/ijcas-20251205.html": 560,
-				"publication/ieee-access-20241021.html": 520,
-				"publication/ijcas-20240806.html": 520,
-				"tutorial/colmap-tutorial.html": 520,
-				"paper-review/ms-apr-review.html": 520,
-				"paper-review/clip-clique-review.html": 520
-			};
+			function resizeIframe(iframe) {
+				const doc = iframe.contentDocument || iframe.contentWindow.document;
+				const height = Math.max(
+					doc.body.scrollHeight,
+					doc.documentElement.scrollHeight,
+					doc.body.offsetHeight,
+					doc.documentElement.offsetHeight
+				);
+	
+				iframe.style.height = height + "px";
+			}
 	
 			function addIframe(parent, file) {
 				const wrapper = document.createElement("div");
@@ -188,7 +187,24 @@
 				const iframe = document.createElement("iframe");
 				iframe.src = file;
 				iframe.scrolling = "no";
-				iframe.style.height = iframeHeights[file] + "px";
+	
+				iframe.onload = function () {
+					resizeIframe(iframe);
+	
+					const doc = iframe.contentDocument || iframe.contentWindow.document;
+	
+					if ("ResizeObserver" in window) {
+						const observer = new ResizeObserver(function () {
+							resizeIframe(iframe);
+						});
+	
+						observer.observe(doc.body);
+					}
+	
+					setTimeout(function () {
+						resizeIframe(iframe);
+					}, 300);
+				};
 	
 				wrapper.appendChild(iframe);
 				parent.appendChild(wrapper);
@@ -201,6 +217,12 @@
 			posts.publication.forEach(file => addIframe(publicationsContent, file));
 			posts.tutorial.forEach(file => addIframe(tutorialsContent, file));
 			posts.paperReview.forEach(file => addIframe(paperContent, file));
+	
+			document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(tab => {
+				tab.addEventListener("shown.bs.tab", function () {
+					document.querySelectorAll("iframe").forEach(resizeIframe);
+				});
+			});
 		});
 	</script>
 </body>
