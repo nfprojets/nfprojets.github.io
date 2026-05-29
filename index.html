@@ -21,16 +21,15 @@
 	<title>Nanda's Project</title>
 
 	<style>
-		/* Controls spacing between each embedded card */
+		/* Space between each embedded post */
 		.iframe-wrapper {
-			margin: 0 0 12px 0;
+			margin: 0 0 18px 0;
 			padding: 0;
 		}
-
-		/* Fixed iframe height, no internal scrollbar */
+	
+		/* No iframe scrollbar */
 		iframe {
 			width: 100%;
-			height: 460px;
 			border: none;
 			display: block;
 			margin: 0 !important;
@@ -154,8 +153,7 @@
 			const publicationsContent = document.getElementById("publications-content");
 			const tutorialsContent = document.getElementById("tutorials-content");
 			const paperContent = document.getElementById("paper-content");
-
-			// List of pages to show in each tab
+	
 			const posts = {
 				publication: [
 					"publication/icra-20260601.html",
@@ -171,32 +169,37 @@
 					"paper-review/clip-clique-review.html"
 				]
 			};
-
-			// Create one iframe card
+	
+			/* Manual iframe heights. Increase/decrease these if needed. */
+			const iframeHeights = {
+				"publication/icra-20260601.html": 500,
+				"publication/ijcas-20251205.html": 560,
+				"publication/ieee-access-20241021.html": 520,
+				"publication/ijcas-20240806.html": 520,
+				"tutorial/colmap-tutorial.html": 520,
+				"paper-review/ms-apr-review.html": 520,
+				"paper-review/clip-clique-review.html": 520
+			};
+	
 			function addIframe(parent, file) {
 				const wrapper = document.createElement("div");
 				wrapper.className = "iframe-wrapper";
-
+	
 				const iframe = document.createElement("iframe");
 				iframe.src = file;
 				iframe.scrolling = "no";
-
+				iframe.style.height = iframeHeights[file] + "px";
+	
 				wrapper.appendChild(iframe);
 				parent.appendChild(wrapper);
 			}
-
-			// Fill All News tab
+	
 			for (const category in posts) {
 				posts[category].forEach(file => addIframe(allNewsContent, file));
 			}
-
-			// Fill Publications tab
+	
 			posts.publication.forEach(file => addIframe(publicationsContent, file));
-
-			// Fill Tutorials tab
 			posts.tutorial.forEach(file => addIframe(tutorialsContent, file));
-
-			// Fill Paper Review tab
 			posts.paperReview.forEach(file => addIframe(paperContent, file));
 		});
 	</script>
